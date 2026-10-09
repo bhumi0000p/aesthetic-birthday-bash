@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Birthday Bash ✨</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --cream: #fffaf6;
+        --blush: #ffdfe8;
+        --pink: #ffb3c7;
+        --pink-deep: #e77aa2;
+        --rose: #d8658f;
+        --lilac: #e9dcff;
+        --lavender: #d8c7ff;
+        --gold: #f7d79f;
+        --peach: #ffd9c7;
+        --text: #513d45;
+        --muted: #7d6470;
+        --card: rgba(255, 255, 255, 0.88);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html, body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        padding: 32px 18px;
+        font-family: 'Nunito', sans-serif;
+        background:
+          radial-gradient(circle at top left, rgba(255, 210, 227, 0.9), transparent 30%),
+          radial-gradient(circle at bottom right, rgba(220, 197, 255, 0.9), transparent 35%),
+          linear-gradient(135deg, #fffafc 0%, #fff4f8 40%, #fef8ff 100%);
+        color: var(--text);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .sparkle, .sparkle::before, .sparkle::after {
+        position: absolute;
+        content: "✦";
+        font-size: 1.2rem;
+        color: rgba(231, 122, 162, 0.55);
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .sparkle:nth-child(1) { top: 12%; left: 10%; }
+      .sparkle:nth-child(2) { top: 18%; right: 14%; animation-delay: 1s; }
+      .sparkle:nth-child(3) { bottom: 18%; left: 18%; animation-delay: 2s; }
+      .sparkle:nth-child(4) { bottom: 14%; right: 20%; animation-delay: 3s; }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px) scale(1); opacity: 0.8; }
+        50% { transform: translateY(-10px) scale(1.1); opacity: 1; }
+      }
+
+      .card {
+        position: relative;
+        width: min(100%, 430px);
+        background: var(--card);
+        backdrop-filter: blur(6px);
+        border-radius: 34px;
+        padding: 28px 22px 24px;
+        border: 2px solid rgba(255, 179, 199, 0.8);
+        box-shadow: 0 20px 50px rgba(231, 122, 162, 0.18), 0 8px 16px rgba(140, 100, 160, 0.08);
+        text-align: center;
+      }
+
+      .card::before,
+      .card::after {
+        position: absolute;
+        content: "";
+        border-radius: 50%;
+        z-index: 0;
+      }
+
+      .card::before {
+        width: 150px;
+        height: 150px;
+        top: -42px;
+        right: -30px;
+        background: radial-gradient(circle, rgba(255, 210, 227, 0.95), rgba(255, 210, 227, 0));
+      }
+
+      .card::after {
+        width: 120px;
+        height: 120px;
+        bottom: -32px;
+        left: -25px;
+        background: radial-gradient(circle, rgba(217, 198, 255, 0.75), rgba(217, 198, 255, 0));
+      }
+
+      .card > * {
+        position: relative;
+        z-index: 1;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 8px 18px;
+        border-radius: 999px;
+        background: linear-gradient(135deg, #ffe2ec, #f7dcff);
+        color: var(--rose);
+        font-size: 0.78rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        font-weight: 800;
+        box-shadow: 0 6px 14px rgba(231, 122, 162, 0.15);
+      }
+
+      h1 {
+        margin: 18px 0 8px;
+        font-family: 'Fredoka', sans-serif;
+        font-size: clamp(2.1rem, 4vw, 3rem);
+        line-height: 1.1;
+        color: var(--rose);
+        letter-spacing: 0.04em;
+      }
+
+      .subtitle {
+        margin: 0 0 20px;
+        color: var(--muted);
+        font-weight: 700;
+        font-size: 1rem;
+      }
+
+      .note {
+        background: linear-gradient(135deg, #fff6fb, #fff9f3);
+        border: 2px dashed rgba(231, 122, 162, 0.7);
+        border-radius: 20px;
+        padding: 16px 15px;
+        color: var(--text);
+        line-height: 1.7;
+        font-size: 0.96rem;
+        font-weight: 600;
+      }
+
+      .details {
+        margin: 22px 0 20px;
+        background: linear-gradient(135deg, #f5ebff, #fdeaf2);
+        border-radius: 22px;
+        padding: 18px 16px 8px;
+        text-align: left;
+      }
+
+      .detail-row {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 14px;
+        font-size: 0.96rem;
+        color: var(--text);
+        font-weight: 700;
+      }
+
+      .detail-row .icon {
+        width: 36px;
+        height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.7);
+        box-shadow: inset 0 0 0 1px rgba(231, 122, 162, 0.15);
+        font-size: 1.2rem;
+      }
+
+      .detail-row strong {
+        color: var(--text);
+      }
+
+      .rules {
+        background: linear-gradient(135deg, #fff8ea, #fffdf5);
+        border-left: 5px solid #f3c76e;
+        border-radius: 18px;
+        padding: 16px 18px;
+        text-align: left;
+        margin-bottom: 22px;
+      }
+
+      .rules h3 {
+        margin: 0 0 10px;
+        color: #a56024;
+        font-size: 1rem;
+      }
+
+      .rules ul {
+        margin: 0;
+        padding-left: 18px;
+        font-size: 0.9rem;
+        line-height: 1.7;
+        color: #6d4a2f;
+      }
+
+      .cta {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .btn {
+        display: inline-block;
+        width: 100%;
+        border: none;
+        cursor: pointer;
+        border-radius: 999px;
+        background: linear-gradient(135deg, var(--rose), #d34c73);
+        color: white;
+        font-family: 'Fredoka', sans-serif;
+        font-size: 1.15rem;
+        letter-spacing: 0.03em;
+        padding: 16px 20px;
+        box-shadow: 0 12px 24px rgba(216, 101, 143, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 16px 28px rgba(216, 101, 143, 0.35);
+      }
+
+      .map-btn {
+        display: inline-block;
+        width: 100%;
+        text-decoration: none;
+        padding: 12px 18px;
+        background: rgba(255, 255, 255, 0.8);
+        border: 2px solid rgba(216, 101, 143, 0.75);
+        border-radius: 999px;
+        color: var(--rose);
+        font-weight: 800;
+        font-size: 0.9rem;
+      }
+
+      .footer {
+        margin-top: 18px;
+        color: #a07d8a;
+        font-style: italic;
+        font-size: 0.8rem;
+      }
+
+      @media (max-width: 420px) {
+        .card {
+          padding: 24px 18px 20px;
+        }
+
+        .detail-row {
+          font-size: 0.9rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+    <div class="sparkle"></div>
+
+    <div class="card">
+      <div class="tag">Official Invite</div>
+      <h1>YOU'RE INVITED! 💖</h1>
+      <div class="subtitle">to the prettiest birthday bash ever ✨</div>
+
+      <div class="note">
+        Attention everyone! The cutest, funniest, and most iconic girl on the planet is celebrating her birthday, and this is your official reminder to be there, be cute, and bring your best energy 💅🎉
+      </div>
+
+      <div class="details">
+        <div class="detail-row">
+          <span class="icon">📅</span>
+          <div><strong>Date:</strong> Saturday, 10th October</div>
+        </div>
+        <div class="detail-row">
+          <span class="icon">⏰</span>
+          <div><strong>Time:</strong> 7:00 PM Sharp</div>
+        </div>
+        <div class="detail-row">
+          <span class="icon">📍</span>
+          <div><strong>Venue:</strong> Classic Treat, Bilaspur</div>
+        </div>
+        <div class="detail-row">
+          <span class="icon">🎀</span>
+          <div><strong>Dress:</strong> Pastel / Pinterest Aesthetic</div>
+        </div>
+      </div>
+
+      <div class="rules">
+        <h3>Party Rules ✨</h3>
+        <ul>
+          <li>Attendance is absolutely compulsory 😌</li>
+          <li>Camera-ready, because we are taking 500+ photos 💕</li>
+          <li>Come hungry — calories don't count on birthdays 🍕</li>
+        </ul>
+      </div>
+
+      <div class="cta">
+        <button class="btn" onclick="alert('Yay! See you there bestie! 🎉💖')">YES, I'M COMING! 🥳</button>
+        <a href="https://maps.google.com/?q=Classic+Treat+Bilaspur" target="_blank" class="map-btn">🗺️ Open Venue in Maps</a>
+      </div>
+
+      <div class="footer">*There is strategically no “NO” button. See you soon! 💕</div>
+    </div>
+  </body>
+</html>
